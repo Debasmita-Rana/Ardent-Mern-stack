@@ -7,16 +7,20 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Addcourse from './components/Addcourse';
 import Coursedetails from './components/Coursedetails';
+import Editcourse from './components/Editcourse';
+import Viewcourse from './components/Viewcourse';
 const App = () => {
   return <>
     <BrowserRouter>
       <Header />
       <Routes>
         <Route path="/" element={<Home/>}></Route>
-        <Route path="/about" element={<About message="ok"/>}></Route>
+        <Route path="/about" element={<About />}></Route>
         <Route path="/contact" element={<Contact/>}></Route>
         <Route path="/add" element={<Addcourse/>}></Route>
-        <Route path="/courses" element={<Coursedetails/>}></Route>
+        <Route path="/courses/:id" element={<Coursedetails/>}></Route>
+        <Route path="/edit-courses/:id" element={<Editcourse/>}></Route>
+         <Route path="/courses" element={<Viewcourse/>}></Route>
       </Routes>
       <Footer />
     </BrowserRouter>
