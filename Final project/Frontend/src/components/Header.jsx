@@ -1,17 +1,25 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+ 
+  const token = localStorage.getItem('token');
+
+  const hl = () => {
+    localStorage.removeItem('token');
+    navigate('/login');
+  }
 
   const menu = [
-    { name: "Home", path: "/" },
+    { name: "Home", path: "/home" },
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
     { name: "Add Course", path: "/add" },
     { name: "Courses Details", path: "/courses/:id" },
     { name: "View Courses", path: "/courses" },
-  
+    
   ];
 
   return (
@@ -27,7 +35,10 @@ const Header = () => {
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex gap-8 items-center">
-          {menu.map((item, index) => (
+
+          <Link to="/">Register</Link> | <Link to="/login">Login</Link>
+           <button onClick={hl}>Logout</button>
+          {token && menu.map((item, index) => (
             <li key={index}>
               <Link
                 to={item.path}
